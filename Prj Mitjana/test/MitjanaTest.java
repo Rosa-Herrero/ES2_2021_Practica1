@@ -11,16 +11,16 @@ public class MitjanaTest {
 	private Mitjana instance; //Objecte a provar
     private short[] val; //1er argument d'entrada
     private short maxval; // 2on argument d'entrada
-    private short[] resultObtingut; //retorn del mètode
-    private short[] resultEsperat; //resultat esperat en el cas de prova
-    
+    private double[] resultObtingut; //retorn del mètode
+    private double[] resultEsperat; //resultat esperat en el cas de prova
+    private final double DELTA = 0.001; //diferència aceptada
 
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Before");
 		instance = new Mitjana();
         val = new short[Mitjana.MAXVECTOR];
-        resultEsperat = new short[3];
+        resultEsperat = new double[3];
 	}
 
 	@Test
@@ -80,11 +80,11 @@ public class MitjanaTest {
 		maxval = 2;
 		resultObtingut = instance.calculMitjana(val, maxval);
 		//Sortida esperada
-        resultEsperat[0] = 5.5f; //(8+3)/2=11/2 = 5.5
+        resultEsperat[0] = 5.5; //(8+3)/2=11/2 = 5.5
         resultEsperat[1] = 2;
         resultEsperat[2] = 2;
         //comparar resultat obtingut amb l'esperat
-        assertArrayEquals(resultEsperat, resultObtingut);
+        assertArrayEquals(resultEsperat, resultObtingut, DELTA);
 	}
 
 
